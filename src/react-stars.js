@@ -56,6 +56,8 @@ class ReactStars extends Component {
       color1: props.color1,
       // color of an active star
       color2: props.color2,
+      char1: props.char1,
+      char2: props.char2,
       half: props.half,
       edit: props.edit,
     }
@@ -75,16 +77,7 @@ class ReactStars extends Component {
       halfStar: {
         at: Math.floor(props.value),
         hidden: this.state.config.half && props.value % 1 < 0.5
-      },
-      config: Object.assign({}, this.state.config, {
-        count: props.count,
-        size: props.size,
-        char: props.char,
-        color1: props.color1,
-        color2: props.color2,
-        half: props.half,
-        edit: props.edit
-      })
+      }
     })
   }
 
@@ -183,7 +176,7 @@ class ReactStars extends Component {
 
   renderStars() {
     const { halfStar, stars, uniqueness, config } = this.state
-    const { color1, color2, size, char, half, edit } = config
+    const { color1, color2, size, char1, char2, half, edit } = config
     return stars.map((star, i) => {
       let starClass = ''
       if (half && !halfStar.hidden && halfStar.at === i) {
@@ -194,6 +187,7 @@ class ReactStars extends Component {
         cursor: edit ? 'pointer' : 'default',
         fontSize: `${size}px`
       })
+      let char= star.active ? char2 : char1
       return (
         <span
           className={starClass}
@@ -234,7 +228,8 @@ ReactStars.propTypes = {
   half: PropTypes.bool,
   value: PropTypes.number,
   count: PropTypes.number,
-  char: PropTypes.string,
+  char1: PropTypes.string,
+  char2: PropTypes.string,
   size: PropTypes.number,
   color1: PropTypes.string,
   color2: PropTypes.string
@@ -245,7 +240,8 @@ ReactStars.defaultProps = {
   half: true,
   value: 0,
   count: 5,
-  char: '★',
+  char1: '★',
+  char2: '★',
   size: 15,
   color1: 'gray',
   color2: '#ffd700',
