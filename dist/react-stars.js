@@ -66,7 +66,8 @@ var ReactStars = function (_Component) {
     _this.state.config = {
       count: props.count,
       size: props.size,
-      char: props.char,
+      char1: props.char1,
+      char2: props.char2,
       // default color of inactive star
       color1: props.color1,
       // color of an active star
@@ -223,7 +224,8 @@ var ReactStars = function (_Component) {
       var color1 = config.color1,
           color2 = config.color2,
           size = config.size,
-          char = config.char,
+          char1 = config.char1,
+          char2 = config.char2,
           half = config.half,
           edit = config.edit;
 
@@ -237,7 +239,9 @@ var ReactStars = function (_Component) {
           cursor: edit ? 'pointer' : 'default',
           fontSize: size + 'px'
         });
+        let char= star.active ? char2 : char1
         return _react2.default.createElement(
+          
           'span',
           {
             className: starClass,
@@ -277,7 +281,8 @@ ReactStars.propTypes = {
   half: _propTypes2.default.bool,
   value: _propTypes2.default.number,
   count: _propTypes2.default.number,
-  char: _propTypes2.default.string,
+  char1: _propTypes2.default.string,
+  char2: _propTypes2.default.string,
   size: _propTypes2.default.number,
   color1: _propTypes2.default.string,
   color2: _propTypes2.default.string
@@ -288,7 +293,8 @@ ReactStars.defaultProps = {
   half: true,
   value: 0,
   count: 5,
-  char: '★',
+  char1: '★',
+  char2: '★',
   size: 15,
   color1: 'gray',
   color2: '#ffd700',
